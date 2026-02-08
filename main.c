@@ -12,7 +12,6 @@ void build(struct Vertex* v){
   v->weight = 0;
 }
 void destroy(struct Vertex* v){
-  free(v->forward[0]);
   for(int i=0;i<V;++i)
         free(v->forward[i]);
 }
