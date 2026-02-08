@@ -1,17 +1,20 @@
 #include "stdlib.h"
 #define V 1024
 struct Vertex{
-  struct Vertex* adj[V];
+  struct Vertex* forward[V];
+  struct Vertex* backward[V];
   int weight;
 };
 
 void build(struct Vertex* v){
-  v->adj[0]= (struct Vertex*)malloc(sizeof(struct Vertex));
+  for(int i=0;i<V;++i)
+  	v->forward[i]= (struct Vertex*)malloc(sizeof(struct Vertex));
   v->weight = 0;
 }
 void destroy(struct Vertex* v){
-  free(v->adj[0]);
-  free(v);
+  free(v->forward[0]);
+  for(int i=0;i<V;++i)
+        free(v->forward[i]);
 }
 int main(){
   struct Vertex* v = (struct Vertex*)malloc(sizeof(struct Vertex));
